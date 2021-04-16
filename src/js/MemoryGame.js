@@ -31,6 +31,8 @@ class MemoryGame {
     this.screen.configPlayButton(this.play.bind(this));
 
     this.screen.configVerifySelectionButton(this.verifySelection.bind(this));
+
+    this.screen.configShowAllButton(this.showHiddenHeroes.bind(this));
   }
   async randomize() {
     const copies = this.initialHeroes
@@ -42,7 +44,11 @@ class MemoryGame {
 
     this.screen.refreshImages(copies);
     this.screen.showLoading();
-    await this.util.timeout(1000);
+
+    const intervalId = this.screen.startCounter();
+
+    await this.util.timeout(3000);
+    this.screen.cleanCounter(intervalId);
     this.hideHeroes(copies);
     this.screen.showLoading(false);
   }
@@ -84,6 +90,19 @@ class MemoryGame {
         this.screen.showMessage(false);
         break;
     }
+  }
+
+  showHiddenHeroes() {
+    const hiddenHeroes = this.hiddenHeroes;
+
+    for (const hero of hiddenHeroes) {
+      const { img } = this.initialHeroes.find(
+        (item) => item.name === hero.name
+      );
+      hero.img = img;
+    }
+
+    this.screen.refreshImages(hiddenHeroes);
   }
 
   play() {

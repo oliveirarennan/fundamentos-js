@@ -86,4 +86,29 @@ class Screen {
     }
     loading.classList.add(HIDDEN_STYLE);
   }
+
+  static startCounter() {
+    let countUntil = 3;
+
+    const elementCounter = document.getElementById(COUNTER_ID);
+
+    const textMark = "$$counter";
+    const defaultText = `Começando em ${textMark} segundos...`;
+    const updateText = () =>
+      (elementCounter.innerHTML = defaultText.replace(textMark, countUntil--));
+
+    updateText();
+    const intervalId = setInterval(updateText, 1000);
+    return intervalId;
+  }
+
+  static cleanCounter(intervalId) {
+    clearInterval(intervalId);
+  }
+
+  static configShowAllButton(functionOnClick) {
+    const btnShowAll = document.getElementById(SHOW_BTN_ID);
+
+    btnShowAll.onclick = functionOnClick;
+  }
 }
