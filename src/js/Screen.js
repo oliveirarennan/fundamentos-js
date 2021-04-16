@@ -1,6 +1,18 @@
 const CONTENT_ID = "content";
 const PLAY_BTN_ID = "play";
 const SHOW_BTN_ID = "showAll";
+const MESSAGE_ID = "message";
+const HIDDEN_STYLE = "hidden";
+const MESSAGES = {
+  success: {
+    text: "Combinação correta!",
+    style: "message-correct",
+  },
+  error: {
+    text: "Combinacão incorreta!",
+    style: "message-incorrect",
+  },
+};
 
 class Screen {
   static getHtmlCode(item) {
@@ -35,5 +47,27 @@ class Screen {
     const btnPlay = document.getElementById(PLAY_BTN_ID);
 
     btnPlay.onclick = functionOnClick;
+  }
+
+  static showHeroes(heroName, img) {
+    const htmlElements = document.getElementsByName(heroName);
+
+    htmlElements.forEach((item) => (item.src = img));
+  }
+
+  static showMessage(success = true) {
+    const element = document.getElementById(MESSAGE_ID);
+
+    if (success) {
+      element.classList.remove(MESSAGES.error.style);
+      element.classList.add(MESSAGES.success.style);
+      element.innerHTML = MESSAGES.success.text;
+    } else {
+      element.classList.remove(MESSAGES.success.style);
+      element.classList.add(MESSAGES.error.style);
+      element.innerHTML = MESSAGES.error.text;
+    }
+
+    element.classList.remove(HIDDEN_STYLE);
   }
 }

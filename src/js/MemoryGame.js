@@ -56,6 +56,11 @@ class MemoryGame {
     this.hiddenHeroes = hidedenHeroes;
   }
 
+  showHeroes(heroName) {
+    const { img } = this.initialHeroes.find(({ name }) => heroName === name);
+    this.screen.showHeroes(heroName, img);
+  }
+
   verifySelection(id, name) {
     const item = { id, name };
 
@@ -69,10 +74,12 @@ class MemoryGame {
         const [option1] = this.selectedHeroes;
         this.selectedHeroes = [];
         if (option1.name === item.name && option1.id !== item.id) {
-          alert("combinação correta!" + item.name);
+          this.showHeroes(item.name);
+
+          this.screen.showMessage();
           return;
         }
-        alert("combinação incorreta!");
+        this.screen.showMessage(false);
         break;
     }
   }

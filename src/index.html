@@ -11,10 +11,8 @@
   <script src="./js/MemoryGame.js"></script>
   <script src="./js/Screen.js"></script>
 </head>
-<body class="container box-borders">
-  <br>
-
-  <div class="container">
+<body class="flex flex-col">
+  <div class="m-2">
     <button type="button" class="btn-green" id="play">Clique aqui para iniciar</button>
     <button type="button" class="btn-red" id="showAll">Mostrar tudo</button>
   </div>
@@ -23,12 +21,9 @@
 
   </div>
 
-  
+  <div class="flex flex-row items-center">
+    <div id="message" class="message-incorrect hidden">Combinação</div>
+  </div>
 
-  
-
-  <br>
-
-  
 </body>
 </html>
