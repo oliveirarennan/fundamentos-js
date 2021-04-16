@@ -6,48 +6,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Memory Game</title>
   <link rel="stylesheet" href="./css/tailwind.css">
+
+  <script src="./js/index.js"></script>
+  <script src="./js/Util.js"></script>
+  <script src="./js/MemoryGame.js"></script>
+  <script src="./js/Screen.js"></script>
 </head>
-<body class="container box-borders">
-  <br>
-
-  <div class="container">
-    <button type="button" class="btn-green" id="jogar">Clique aqui para iniciar</button>
-    <button type="button" class="btn-red" id="mostrarTudo">Mostrar tudo</button>
+<body class="flex flex-col">
+  <div class="m-2">
+    <button type="button" class="btn-green" id="play">Clique aqui para iniciar</button>
+    <button type="button" class="btn-red" id="showAll">Mostrar tudo</button>
   </div>
-
-  <div class="flex flex-row flex-wrap justify-center items-center">
-
-    <div  class="flex flex-col max-w-xs bg-gray-200 rounded-lg m-2 hover:animate-spin">
-      <div class="w-64 p-1">
-        <img src="./img/batman.png" alt="Imagem de teste" >
-      </div>
-    </div>
-
-    <div  class="flex flex-col max-w-xs bg-gray-200 rounded-lg m-2">
-      <div class="w-64 p-1">
-        <img src="./img//flash.png" alt="Imagem de teste" >
-      </div>
-    </div>
-
-    <div  class="flex flex-col max-w-xs bg-gray-200 rounded-lg m-2">
-      <div class="w-64 p-1">
-        <img src="./img/punisher.png" alt="Imagem de teste" >
-      </div>
-    </div>
-
-    <div  class="flex flex-col max-w-xs bg-gray-200 rounded-lg m-2">
-      <div class="w-64 p-1">
-        <img src="./img/spiderman.png" alt="Imagem de teste" >
-      </div>
+  <div id="loading" class="flex flex-row items-center hidden">
+    <strong id="counter">Começando em 1...</strong>
+    <div class="bg-gray-300 animate-spin w-5 h-5 rounded-full">
+      <div class="border-t-2  border-black w-5 h-5 rounded-full">&nbsp;</div>
     </div>
   </div>
 
-  
+  <div id="content" class="flex flex-row flex-wrap justify-center items-center">
 
-  
+  </div>
 
-  <br>
+  <div class="flex flex-row items-center">
+    <div id="message" class="message-incorrect hidden">Combinação</div>
+  </div>
 
-  
 </body>
 </html>

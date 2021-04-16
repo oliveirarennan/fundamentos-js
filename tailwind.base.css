@@ -28,4 +28,12 @@
   @apply bg-blue-600 border-blue-900;
 }
 
+.message-correct {
+  @apply bg-green-500 text-green-900 font-bold rounded p-4;
+}
+
+.message-incorrect{
+  @apply bg-red-500 text-red-900 font-bold rounded p-4;
+}
+
 @tailwind utilities;
