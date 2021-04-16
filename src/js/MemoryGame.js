@@ -17,6 +17,10 @@ class MemoryGame {
       },
       { img: "./img/punisher.png", name: "punisher" },
     ];
+
+    this.maskHero = "./img/ninja.png";
+
+    this.hiddenHeroes = [];
   }
 
   initialize() {
@@ -32,7 +36,23 @@ class MemoryGame {
       })
       .sort(() => Math.random() - 0.5);
     this.screen.refreshImages(copies);
+
+    setTimeout(() => {
+      this.hideHeroes(copies);
+    }, 1000);
   }
+
+  hideHeroes(heroes) {
+    const hidedenHeroes = heroes.map(({ name, id }) => ({
+      id,
+      name,
+      img: this.maskHero,
+    }));
+    this.screen.refreshImages(hidedenHeroes);
+
+    this.hiddenHeroes = hidedenHeroes;
+  }
+
   play() {
     this.randomize();
   }
