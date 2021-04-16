@@ -21,12 +21,15 @@ class MemoryGame {
     this.maskHero = "./img/ninja.png";
 
     this.hiddenHeroes = [];
+    this.selectedHeroes = [];
   }
 
   initialize() {
     this.screen.refreshImages(this.initialHeroes);
 
     this.screen.configPlayButton(this.play.bind(this));
+
+    this.screen.configVerifySelectionButton(this.verifySelection.bind(this));
   }
   randomize() {
     const copies = this.initialHeroes
@@ -51,6 +54,27 @@ class MemoryGame {
     this.screen.refreshImages(hidedenHeroes);
 
     this.hiddenHeroes = hidedenHeroes;
+  }
+
+  verifySelection(id, name) {
+    const item = { id, name };
+
+    const selectedHeroes = this.selectedHeroes.length;
+
+    switch (selectedHeroes) {
+      case 0:
+        this.selectedHeroes.push(item);
+        break;
+      case 1:
+        const [option1] = this.selectedHeroes;
+        this.selectedHeroes = [];
+        if (option1.name === item.name && option1.id !== item.id) {
+          alert("combinação correta!" + item.name);
+          return;
+        }
+        alert("combinação incorreta!");
+        break;
+    }
   }
 
   play() {
