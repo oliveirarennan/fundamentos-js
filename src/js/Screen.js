@@ -1,4 +1,6 @@
 const CONTENT_ID = "content";
+const PLAY_BTN_ID = "play";
+const SHOW_BTN_ID = "showAll";
 
 class Screen {
   static getHtmlCode(item) {
@@ -23,5 +25,11 @@ class Screen {
   static refreshImages(items) {
     const htmlCode = Screen.generateHtmlStringByImage(items);
     Screen.changeHtmlContent(htmlCode);
+  }
+
+  static configPlayButton(functionOnClick) {
+    const btnPlay = document.getElementById(PLAY_BTN_ID);
+
+    btnPlay.onclick = functionOnClick;
   }
 }
