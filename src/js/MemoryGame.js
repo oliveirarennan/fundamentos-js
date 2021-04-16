@@ -1,6 +1,7 @@
 class MemoryGame {
-  constructor({ screen }) {
+  constructor({ screen, util }) {
     this.screen = screen;
+    this.util = util;
 
     this.initialHeroes = [
       {
@@ -31,18 +32,19 @@ class MemoryGame {
 
     this.screen.configVerifySelectionButton(this.verifySelection.bind(this));
   }
-  randomize() {
+  async randomize() {
     const copies = this.initialHeroes
       .concat(this.initialHeroes)
       .map((item) => {
         return Object.assign({}, item, { id: Math.random() / 0.5 });
       })
       .sort(() => Math.random() - 0.5);
-    this.screen.refreshImages(copies);
 
-    setTimeout(() => {
-      this.hideHeroes(copies);
-    }, 1000);
+    this.screen.refreshImages(copies);
+    this.screen.showLoading();
+    await this.util.timeout(1000);
+    this.hideHeroes(copies);
+    this.screen.showLoading(false);
   }
 
   hideHeroes(heroes) {

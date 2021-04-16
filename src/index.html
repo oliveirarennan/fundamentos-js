@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="./css/tailwind.css">
 
   <script src="./js/index.js"></script>
+  <script src="./js/Util.js"></script>
   <script src="./js/MemoryGame.js"></script>
   <script src="./js/Screen.js"></script>
 </head>
@@ -15,6 +16,12 @@
   <div class="m-2">
     <button type="button" class="btn-green" id="play">Clique aqui para iniciar</button>
     <button type="button" class="btn-red" id="showAll">Mostrar tudo</button>
+  </div>
+  <div id="loading" class="flex flex-row items-center hidden">
+    <strong id="counter">Começando em 1...</strong>
+    <div class="bg-gray-300 animate-spin w-5 h-5 rounded-full">
+      <div class="border-t-2  border-black w-5 h-5 rounded-full">&nbsp;</div>
+    </div>
   </div>
 
   <div id="content" class="flex flex-row flex-wrap justify-center items-center">

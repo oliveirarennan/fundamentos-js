@@ -1,8 +1,12 @@
+const util = Util;
+
 const CONTENT_ID = "content";
 const PLAY_BTN_ID = "play";
 const SHOW_BTN_ID = "showAll";
 const MESSAGE_ID = "message";
 const HIDDEN_STYLE = "hidden";
+const LOADING_ID = "loading";
+const COUNTER_ID = "counter";
 const MESSAGES = {
   success: {
     text: "Combinação correta!",
@@ -55,7 +59,7 @@ class Screen {
     htmlElements.forEach((item) => (item.src = img));
   }
 
-  static showMessage(success = true) {
+  static async showMessage(success = true) {
     const element = document.getElementById(MESSAGE_ID);
 
     if (success) {
@@ -69,5 +73,17 @@ class Screen {
     }
 
     element.classList.remove(HIDDEN_STYLE);
+    await util.timeout(1000);
+    element.classList.add(HIDDEN_STYLE);
+  }
+
+  static showLoading(show = true) {
+    const loading = document.getElementById(LOADING_ID);
+
+    if (show) {
+      loading.classList.remove(HIDDEN_STYLE);
+      return;
+    }
+    loading.classList.add(HIDDEN_STYLE);
   }
 }
